@@ -1,15 +1,17 @@
 //Move the catcher with the left and right arrow keys to catch the falling objects. 
 
 /* VARIABLES */
-let catcher, fallingObject, evilFallingObject;
+//sprites
+let catcher, fallingObject, badFallingObject;
 let score = 0;
 let highScore = 0;
+//images
 let backgroundImg;
 let catcherImg;
 let fallingObjectImg1;
 let fallingObjectImg2;
-let fallingObjects;
-let badFallingObject;
+let badFallingObjectImg;
+// let fallingObjects; -> see line 39
 let rebeccaPurple;
 let greenColor;
 let bgColor;
@@ -34,7 +36,7 @@ function setup() {
   highScoreColor = '#d3eddc';
   createCanvas(400,400);
 
-  fallingObjects = [fallingObjectImg1, fallingObjectImg2];
+  // fallingObjects = [fallingObjectImg1, fallingObjectImg2]; -> TO-DO: figure out how to make image for fallingObject sprite random (50% chance of each image)
   
   //resize images
   backgroundImg.resize(60, 0);
@@ -56,10 +58,10 @@ function setup() {
   fallingObject.vel.y = 2;
   fallingObject.rotationLock = true;
 
-  evilFallingObject = new Sprite(badFallingObjectImg, 100, 0, 10);
-  // evilFallingObject.color = color(0,128,128);
-  evilFallingObject.vel.y = 2;
-  evilFallingObject.rotationLock = true;
+  badFallingObject = new Sprite(badFallingObjectImgImg, 100, 0, 10);
+  // badFallingObject.color = color(0,128,128);
+  badFallingObject.vel.y = 2;
+  badFallingObject.rotationLock = true;
   allSprites.debug = true;
 
 }
@@ -85,10 +87,10 @@ function draw() {
     fallingObject.vel.y = random(1, 5);
     score -= 1;
   }
-  if (evilFallingObject.y >= height) {
-    evilFallingObject.y = 0;
-    evilFallingObject.x = random(width);
-    evilFallingObject.vel.y = random(1, 5);
+  if (badFallingObject.y >= height) {
+    badFallingObject.y = 0;
+    badFallingObject.x = random(width);
+    badFallingObject.vel.y = random(1, 5);
     // score -= 1;
   }
 
@@ -117,17 +119,17 @@ function draw() {
     score += 1;
   }
 
-  if (evilFallingObject.collides(catcher)) {
-    evilFallingObject.y = 0;
-    evilFallingObject.x = random(width);
-    evilFallingObject.vel.y = random(1, 5);
-    evilFallingObject.direction = 'down';
+  if (badFallingObject.collides(catcher)) {
+    badFallingObject.y = 0;
+    badFallingObject.x = random(width);
+    badFallingObject.vel.y = random(1, 5);
+    badFallingObject.direction = 'down';
     score -= 1;
   }
 
-  if (fallingObject.collides(evilFallingObject)) {
+  if (fallingObject.collides(badFallingObject)) {
     fallingObject.direction = 'down';
-    evilFallingObject.direction = 'down';
+    badFallingObject.direction = 'down';
   }
 
   //Display score
@@ -141,7 +143,7 @@ function draw() {
   if (score < 0) {
     catcher.x = 500;
     fallingObject.y = -500;
-    evilFallingObject.x = -500;
+    badFallingObject.x = -500;
     background(bgColor);
     textSize(30);
     textAlign('center');
@@ -171,11 +173,11 @@ function restart() {
     fallingObject.x = random(width);
     fallingObject.vel.y = random(1, 5);
     fallingObject.direction = 'down';
-    evilFallingObject.y = 0;
-    evilFallingObject.x = random(width);
-    evilFallingObject.color = color(0,128,128);
-    evilFallingObject.vel.y = 2;
-    evilFallingObject.direction = 'down';
+    badFallingObject.y = 0;
+    badFallingObject.x = random(width);
+    badFallingObject.color = color(0,128,128);
+    badFallingObject.vel.y = 2;
+    badFallingObject.direction = 'down';
   }
 }
 function youWin() {
@@ -183,7 +185,7 @@ function youWin() {
   if (score > 5) {
     catcher.x = 500;
     fallingObject.y = -500;
-    evilFallingObject.x = -500;
+    badFallingObject.x = -500;
     background(bgColor);
     textSize(30);
     textAlign('center');
