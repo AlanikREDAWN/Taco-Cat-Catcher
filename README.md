@@ -1,6 +1,10 @@
 # Taco Cat Catcher - A Collection Style Game
 This game was started in the 2024 Girls Who Code SIP (Summer Immersion Program), and after becoming an alumni, I found Hack Club and decided to fully flesh out my game and make it into something unique. So, here I am!
 
+## Where Can I Play It?
+
+Well, currently this game is still a work in progress. When it's completed, I'll put the link to the deployed game here! (See TODO for more details on my progress)
+
 ##  Attributions
 
 ### Images
