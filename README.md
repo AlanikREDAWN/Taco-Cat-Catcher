@@ -3,7 +3,7 @@ This game was started in the 2024 Girls Who Code SIP (Summer Immersion Program),
 
 ## Where Can I Play It?
 
-Well, currently this game is still a work in progress. When it's completed, I'll put the link to the deployed game here! (See TODO for more details on my progress)
+Well, currently this game is still a work in progress. When it's completed, I'll put the link to the deployed game here! (See [TODO](https://github.com/AlanikREDAWN/Taco-Cat-Catcher/blob/main/README.md#to-do) for more details on my progress)
 
 ##  Attributions
 
@@ -18,12 +18,15 @@ Well, currently this game is still a work in progress. When it's completed, I'll
 
 ## TO-DO:
 - [x] Figure out system error
-- [ ] Organize code to increase readability
+- [x] Organize code to increase readability
 - [ ] Fix collider bug
 - [ ] Add home screen
 - [ ] Add how to play screen?
 - [ ] Add level progression
 - [ ] Add high score functionality
+- [ ] Figure out how to make image for fallingObject sprite random (50% chance of each image)
+- [ ] Figure out how to delay the creation of badFallingObject sprite for a few secs
+- [ ] Fix pixelated sprite images
 
 <!-- Not sure if I need this
 ## File Overview

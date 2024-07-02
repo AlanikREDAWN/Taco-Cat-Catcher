@@ -12,15 +12,16 @@ let fallingObjectImg1;
 let fallingObjectImg2;
 let badFallingObjectImg;
 // let fallingObjects; -> see line 39
-let rebeccaPurple;
-let greenColor;
-let bgColor;
-let textColor;
-let highScoreColor;
+//colors
+let rebeccaPurple = '#6c5190';
+let greenColor = '#519053';
+let bgColor = '#4ECDC4';
+let textColor = '#008080';
+let highScoreColor = '#d3eddc';
 
 /* PRELOAD LOADS FILES */
 function preload(){
-  backgroundImg = loadImage('assets/burritoCat.gif');
+  backgroundImg =     loadImage('assets/burritoCat.gif');
   catcherImg = loadImage("assets/plate.gif");
   fallingObjectImg1 = loadImage("assets/tacoCat1.gif");
   fallingObjectImg2 = loadImage("assets/tacoCat2.gif");
@@ -29,13 +30,12 @@ function preload(){
 
 /* SETUP RUNS ONCE */
 function setup() {
-  rebeccaPurple = '#6c5190';
-  greenColor = '#519053';
-  bgColor = '#4ECDC4';
-  textColor = '#008080';
-  highScoreColor = '#d3eddc';
+  
   createCanvas(400,400);
+  // noSmooth();
+  // pixelDensity(displayDensity());
 
+  // noFill();
   // fallingObjects = [fallingObjectImg1, fallingObjectImg2]; -> TO-DO: figure out how to make image for fallingObject sprite random (50% chance of each image)
   
   //resize images
@@ -45,32 +45,34 @@ function setup() {
   fallingObjectImg2.resize(45, 0);
   badFallingObjectImg.resize(45, 0);
 
-
-  
   //Create catcher 
-  catcher = new Sprite(catcherImg, 200, 380, 100, 20, 'k');
+  catcher = createSprite(catcherImg, 200, 380, 'k');
   // catcher.color = color(95,158,160);
-  // catcher.noFill();
+  // catcher.debug = true;
   
-  //Create falling object
+  //Create falling objects
   fallingObject = new Sprite(fallingObjectImg1, 100,0,10);
   // fallingObject.color = color(0,128,128);
   fallingObject.vel.y = 2;
   fallingObject.rotationLock = true;
 
+  //TO-DO: figure out if I can delay the creation of this sprite for a few secs
   badFallingObject = new Sprite(badFallingObjectImg, 100, 0, 10);
-  // badFallingObject.color = color(0,128,128);
+  badFallingObject.color = color(0,128,128);
   badFallingObject.vel.y = 2;
   badFallingObject.rotationLock = true;
-  allSprites.debug = true;
+
+  //debug
+  // allSprites.debug = true;
 
 }
 
 /* DRAW LOOP REPEATS */
 function draw() {
-
+  //set up screen
+  // catcher.debug = true;
+  // console.log(catcher.debug);
   background(bgColor);
-  // box(54);
   //Draw background image
   image(backgroundImg, 230, 5);
 
@@ -87,11 +89,11 @@ function draw() {
     fallingObject.vel.y = random(1, 5);
     score -= 1;
   }
+  //If badFallingObject reaches bottom, move back to random position at top
   if (badFallingObject.y >= height) {
     badFallingObject.y = 0;
     badFallingObject.x = random(width);
     badFallingObject.vel.y = random(1, 5);
-    // score -= 1;
   }
 
   //Move catcher
@@ -119,6 +121,7 @@ function draw() {
     score += 1;
   }
 
+  //If badFallingObject collides with catcher, move back to random position at top
   if (badFallingObject.collides(catcher)) {
     badFallingObject.y = 0;
     badFallingObject.x = random(width);
@@ -158,10 +161,10 @@ function draw() {
   }
 
   youWin();
-  // clear();
-  // catcher.debug = true
-  // allSprites.debug = true;
-  
+
+  // console.log(catcher.debug);
+  //debug
+  // allSprites.debug = mouse.pressing();
 }
 
 function restart() {
@@ -180,6 +183,7 @@ function restart() {
     badFallingObject.direction = 'down';
   }
 }
+
 function youWin() {
   //Create win state
   if (score > 5) {
@@ -200,3 +204,6 @@ function youWin() {
   }
 }
 
+// function keyPressed() {
+//   catcher.debug = !catcher.debug;
+// }
