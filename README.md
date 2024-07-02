@@ -16,6 +16,15 @@ Well, currently this game is still a work in progress. When it's completed, I'll
 
 ---
 
+## TO-DO:
+- [x] Figure out system error
+- [ ] Organize code to increase readability
+- [ ] Fix collider bug
+- [ ] Add home screen
+- [ ] Add how to play screen?
+- [ ] Add level progression
+- [ ] Add high score functionality
+
 <!-- Not sure if I need this
 ## File Overview
 
