@@ -53,12 +53,12 @@ function setup() {
   // catcher.noFill();
   
   //Create falling object
-  fallingObject = new Sprite(random(fallingObjects), 100,0,10);
+  fallingObject = new Sprite(fallingObjectImg1, 100,0,10);
   // fallingObject.color = color(0,128,128);
   fallingObject.vel.y = 2;
   fallingObject.rotationLock = true;
 
-  badFallingObject = new Sprite(badFallingObjectImgImg, 100, 0, 10);
+  badFallingObject = new Sprite(badFallingObjectImg, 100, 0, 10);
   // badFallingObject.color = color(0,128,128);
   badFallingObject.vel.y = 2;
   badFallingObject.rotationLock = true;
