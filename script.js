@@ -43,7 +43,7 @@ function setup() {
   badFallingObjectImg.resize(45, 0);
 
   //Create catcher 
-  catcher = createSprite(catcherImg, 200, 380, 'k');
+  catcher = createSprite(catcherImg, 200, 380, 80, 100, 'k');
   catcher.color = color(95,158,160);
   
   //Create falling objects
