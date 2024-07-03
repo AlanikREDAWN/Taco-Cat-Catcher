@@ -1,37 +1,49 @@
 //Move the catcher with the left and right arrow keys to catch the falling objects. 
 
+new Q5();
+
 /* VARIABLES */
 //sprites
 let catcher, fallingObject, badFallingObject;
+let playButton, directionsButton, backButton;
+//scores
 let score = 0;
 let highScore = 0;
 //images
-let backgroundImg;
-let catcherImg;
-let fallingObjectImg1;
-let fallingObjectImg2;
-let badFallingObjectImg;
+var backgroundImg;
+var catcherImg;
+var fallingObjectImg1;
+var fallingObjectImg2;
+var badFallingObjectImg;
 // let fallingObjects; -> see line 39
 //colors
 let rebeccaPurple = '#6c5190';
 let greenColor = '#519053';
-let bgColor = '#4ECDC4';
+var bgColor = '#4ECDC4';
 let textColor = '#008080';
 let highScoreColor = '#d3eddc';
+createCanvas(400,400, '2d');
+// preload();
 
 /* PRELOAD LOADS FILES */
-function preload(){
-  backgroundImg = loadImage('assets/burritoCat.gif');
-  catcherImg = loadImage("assets/plate.gif");
-  fallingObjectImg1 = loadImage("assets/tacoCat1.gif");
-  fallingObjectImg2 = loadImage("assets/tacoCat2.gif");
-  badFallingObjectImg = loadImage("assets/pugBurger.gif");
-}
+// function preload(){
+  // backgroundImg = loadImage('assets/burritoCat.gif');
+  backgroundImg = loadImage('assets/old/burritoCat_old.png');
+  // catcherImg = loadImage("assets/plate.gif");
+  catcherImg = loadImage("assets/old/plate_old.png");
+  // fallingObjectImg1 = loadImage("assets/tacoCat1.gif");
+  fallingObjectImg1 = loadImage("assets/old/tacoCat1_old.png");
+  // fallingObjectImg2 = loadImage("assets/tacoCat2.gif");
+  fallingObjectImg2 = loadImage("assets/old/tacoCat2_old.png");
+  // badFallingObjectImg = loadImage("assets/pugBurger.gif");
+   badFallingObjectImg = loadImage("assets/old/pugBurger_old.png");
+
+// }
 
 /* SETUP RUNS ONCE */
-function setup() {
+// function setup() {
   
-  createCanvas(400,400);
+  // createCanvas(400,400);
 
   // fallingObjects = [fallingObjectImg1, fallingObjectImg2]; -> TO-DO: figure out how to make image for fallingObject sprite random (50% chance of each image)
   
@@ -43,7 +55,7 @@ function setup() {
   badFallingObjectImg.resize(45, 0);
 
   //Create catcher 
-  catcher = createSprite(catcherImg, 200, 370, 80, 50, 'k');
+  catcher = new Sprite(catcherImg, 200, 370, 80, 50, 'k');
   catcher.color = color(95,158,160);
   
   //Create falling objects
@@ -58,17 +70,21 @@ function setup() {
   badFallingObject.vel.y = 2;
   badFallingObject.rotationLock = true;
 
+  //navigationButtons
+  // playButton = new Sprite(createCanvas)
+
   //debug
   // allSprites.debug = true;
 
-}
+// }
 
 /* DRAW LOOP REPEATS */
 function draw() {
+   // createCanvas(400,400);
   //set up screen
   background(bgColor);
   //Draw background image
-  image(backgroundImg, 230, 5);
+  backgroundImg.createImage(230, 5);
 
   fill(textColor);
   textSize(12);
@@ -157,7 +173,7 @@ function draw() {
   youWin();
 
   //debug
-  allSprites.debug = mouse.pressing();
+  // allSprites.debug = mouse.pressing();
 }
 
 function restart() {
