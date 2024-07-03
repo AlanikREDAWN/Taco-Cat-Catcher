@@ -21,7 +21,7 @@ let highScoreColor = '#d3eddc';
 
 /* PRELOAD LOADS FILES */
 function preload(){
-  backgroundImg =     loadImage('assets/burritoCat.gif');
+  backgroundImg = loadImage('assets/burritoCat.gif');
   catcherImg = loadImage("assets/plate.gif");
   fallingObjectImg1 = loadImage("assets/tacoCat1.gif");
   fallingObjectImg2 = loadImage("assets/tacoCat2.gif");
@@ -43,17 +43,17 @@ function setup() {
   badFallingObjectImg.resize(45, 0);
 
   //Create catcher 
-  catcher = createSprite(catcherImg, 200, 380, 80, 100, 'k');
+  catcher = createSprite(catcherImg, 200, 370, 80, 50, 'k');
   catcher.color = color(95,158,160);
   
   //Create falling objects
-  fallingObject = new Sprite(fallingObjectImg1, 100,0,10);
+  fallingObject = new Sprite(fallingObjectImg1, 100, 0);
   // fallingObject.color = color(0,128,128);
   fallingObject.vel.y = 2;
   fallingObject.rotationLock = true;
 
   //TO-DO: figure out if I can delay the creation of this sprite for a few secs
-  badFallingObject = new Sprite(badFallingObjectImg, 100, 0, 10);
+  badFallingObject = new Sprite(badFallingObjectImg, 100, 0, 35, 40);
   badFallingObject.color = color(0,128,128);
   badFallingObject.vel.y = 2;
   badFallingObject.rotationLock = true;
@@ -164,7 +164,7 @@ function restart() {
   if (mouseIsPressed) {
     score = 0;
     catcher.x = 200;
-    catcher.y = 380;
+    catcher.y = 370;
     fallingObject.y = 0;
     fallingObject.x = random(width);
     fallingObject.vel.y = random(1, 5);

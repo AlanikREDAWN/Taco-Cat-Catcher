@@ -19,7 +19,7 @@ Well, currently this game is still a work in progress. When it's completed, I'll
 ## TO-DO:
 - [x] Figure out system error
 - [x] Organize code to increase readability
-- [ ] Fix collider bug
+- [x] Fix collider bug
 - [ ] Add home screen
 - [ ] Add how to play screen?
 - [ ] Add level progression
