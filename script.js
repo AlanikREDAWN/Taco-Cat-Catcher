@@ -32,10 +32,7 @@ function preload(){
 function setup() {
   
   createCanvas(400,400);
-  // noSmooth();
-  // pixelDensity(displayDensity());
 
-  // noFill();
   // fallingObjects = [fallingObjectImg1, fallingObjectImg2]; -> TO-DO: figure out how to make image for fallingObject sprite random (50% chance of each image)
   
   //resize images
@@ -47,8 +44,7 @@ function setup() {
 
   //Create catcher 
   catcher = createSprite(catcherImg, 200, 380, 'k');
-  // catcher.color = color(95,158,160);
-  // catcher.debug = true;
+  catcher.color = color(95,158,160);
   
   //Create falling objects
   fallingObject = new Sprite(fallingObjectImg1, 100,0,10);
@@ -70,8 +66,6 @@ function setup() {
 /* DRAW LOOP REPEATS */
 function draw() {
   //set up screen
-  // catcher.debug = true;
-  // console.log(catcher.debug);
   background(bgColor);
   //Draw background image
   image(backgroundImg, 230, 5);
@@ -162,9 +156,8 @@ function draw() {
 
   youWin();
 
-  // console.log(catcher.debug);
   //debug
-  // allSprites.debug = mouse.pressing();
+  allSprites.debug = mouse.pressing();
 }
 
 function restart() {
@@ -203,7 +196,3 @@ function youWin() {
     restart();
   }
 }
-
-// function keyPressed() {
-//   catcher.debug = !catcher.debug;
-// }
