@@ -50,22 +50,6 @@ function setup() {
   fallingObjectImg2.resize(45, 0);
   badFallingObjectImg.resize(45, 0);
 
-  //Create catcher 
-  catcher = new Sprite(catcherImg, 200, 370, 80, 50, 'k');
-  catcher.color = color(95,158,160);
-  
-  //Create falling objects
-  fallingObject = new Sprite(fallingObjectImg1, 100, 0);
-  // fallingObject.color = color(0,128,128);
-  fallingObject.vel.y = 2;
-  fallingObject.rotationLock = true;
-
-  //TO-DO: figure out if I can delay the creation of this sprite for a few secs
-  badFallingObject = new Sprite(badFallingObjectImg, 100, 0, 35, 40);
-  badFallingObject.color = color(0,128,128);
-  badFallingObject.vel.y = 2;
-  badFallingObject.rotationLock = true;
-
   //debug
   // allSprites.debug = true;
   homeScreen();
@@ -74,11 +58,15 @@ function setup() {
 /* DRAW LOOP REPEATS */
 function draw() {
   //set up screen
-  background(bgColor);
+  // background(bgColor);
   if (screen == 0) {
     if (directionsButton.mouse.pressed()) {
       screen = 1;
       directionsScreen();
+    } else if (playButton.mouse.pressed()) {
+      screen = 2;
+
+      playScreenAssets()
     }
   }
 
@@ -233,36 +221,83 @@ function homeScreen() {
   background(bgColor);
 
   fill(textColor);
-  textSize(20);
+  textSize(40);
+  textStyle('bold');
   textAlign(CENTER);
-  text("Taco Cat Catcher", width/2, height/2, + 100);
+  stroke(highScoreColor);
+  strokeWeight(2);
+  text("Taco Cat Catcher", width/2, height/2 - 80);
 
-  fill(highScoreColor);
-  textSize(12);
-
+  textStyle('normal');
+  noStroke();
+  
   //navigationButtons
   directionsButton = new Sprite(width/2 - 100, height/2 + 50, 100, 70, 'k');
   directionsButton.color = textColor;
   directionsButton.text = "How to Play";
+  directionsButton.textSize = 16;
+  directionsButton.textColor = highScoreColor;
+  directionsButton.stroke = highScoreColor;
+  directionsButton.strokeWeight = 3;
+  
   playButton = new Sprite(width/2 + 100, height/2 + 50, 100, 70, 'k');
   playButton.color = textColor;
   playButton.text = "Play";
+  playButton.textSize = 16;
+  playButton.textColor = highScoreColor;
+  playButton.stroke = highScoreColor;
+  playButton.strokeWeight = 3;
 }
 
 function directionsScreen() {
-  backButton = new Sprite(width/2, height/2, 100, 70, 'k');
-  backButton.color = textColor;
-  backButton.text = "backButton";
+  background(bgColor);
   playButton.pos = {x: -600, y: -600};
   directionsButton.pos = {x: -800, y: -800};
-  background(bgColor);
+  
+  backButton = new Sprite(width/2, height/2 + 80, 100, 70, 'k');
+  backButton.color = textColor;
+  backButton.text = "Home";
+  backButton.textSize = 16;
+  backButton.textColor = highScoreColor;
+  backButton.stroke = highScoreColor;
+  backButton.strokeWeight = 3;
+
   fill(textColor);
-  textSize(12);
+  stroke(highScoreColor);
+  strokeWeight(2);
+  textSize(40);
+  textStyle('bold');
+  textAlign(CENTER);
+  text("How to Play", width/2, height/2 - 100);
+
+  textStyle('normal');
+  noStroke();
+  
   // Draw directions to screen
-  textAlign('center');
-  text("Move the plate \n with the left and \n right arrow keys \n to catch the taco \n cats and avoid \n the imposters", width/2, height/2);
+  rectMode(CENTER);
+  fill(textColor);
+  textSize(18);
+  textAlign(CENTER);
+  text("Move the plate with the left and right arrow keys to catch the taco cats and avoid the imposters", width/2, height/2 - 20, 300, 100);
 }
 
 function playScreenAssets() {
+  playButton.pos = {x: -600, y: -600};
+  directionsButton.pos = {x: -800, y: -800};
 
+  //Create catcher 
+  catcher = new Sprite(catcherImg, 200, 370, 80, 50, 'k');
+  catcher.color = color(95,158,160);
+
+  //Create falling objects
+  fallingObject = new Sprite(fallingObjectImg1, 100, 0);
+  // fallingObject.color = color(0,128,128);
+  fallingObject.vel.y = 2;
+  fallingObject.rotationLock = true;
+
+  //TO-DO: figure out if I can delay the creation of this sprite for a few secs
+  badFallingObject = new Sprite(badFallingObjectImg, 100, 0, 35, 40);
+  badFallingObject.color = color(0,128,128);
+  badFallingObject.vel.y = 2;
+  badFallingObject.rotationLock = true;
 }

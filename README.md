@@ -17,8 +17,8 @@ Well, currently this game is still a work in progress. When it's completed, I'll
 ---
 
 ## TO-DO:
-- [ ] Add home screen
-- [ ] Add how to play screen
+- [x] Add home screen
+- [x] Add how to play screen
 - [ ] Add level progression
 - [ ] Add high score functionality
 ### Debugging
