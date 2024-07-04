@@ -17,16 +17,22 @@ Well, currently this game is still a work in progress. When it's completed, I'll
 ---
 
 ## TO-DO:
-- [x] Figure out system error
-- [x] Organize code to increase readability
-- [x] Fix collider bug
 - [ ] Add home screen
-- [ ] Add how to play screen?
+- [ ] Add how to play screen
 - [ ] Add level progression
 - [ ] Add high score functionality
+### Debugging
+- [x] Figure out system error
+- [x] Fix collider bug
+### Enhancements
+- [x] Organize code to increase readability
 - [ ] Figure out how to make image for fallingObject sprite random (50% chance of each image)
 - [ ] Figure out how to delay the creation of badFallingObject sprite for a few secs
 - [ ] Fix pixelated sprite images
+### Extras
+- [ ] Add sound effects?
+- [ ] Add animations?
+- [ ] Change canvas size?
 
 <!-- Not sure if I need this
 ## File Overview
