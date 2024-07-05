@@ -20,7 +20,7 @@ Well, currently this game is still a work in progress. When it's completed, I'll
 - [x] Add home screen
 - [x] Add how to play screen
 - [ ] Add level progression
-- [ ] Add high score functionality
+- [x] Add high score functionality
 ### Debugging
 - [x] Figure out system error
 - [x] Fix collider bug

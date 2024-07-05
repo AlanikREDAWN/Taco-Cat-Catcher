@@ -10,6 +10,7 @@ let highScore = 0;
 let screen = 0;
 var time;
 var wait = 2000;
+let lives = 3;
 //images
 var backgroundImg;
 var catcherImg;
@@ -37,6 +38,7 @@ function preload() {
   fallingObjectImg2 = loadImage('assets/tacoCat2.png');
   // badFallingObjectImg = loadImage("assets/pugBurger.gif");
    badFallingObjectImg = loadImage('assets/pugBurger.png');
+  heartImg = loadImage('assets/health.png');
 }
 
 /* SETUP RUNS ONCE */
@@ -86,8 +88,14 @@ function draw() {
 
     //set up screen
     background(bgColor);
+    
     //Draw background image
     image(backgroundImg, 330, 5, 60, 79.711);
+
+    //draw lives
+    image(heartImg, 140, 5, 50, 39.808);
+    image(heartImg, 200, 5, 50, 39.808);
+    image(heartImg, 260, 5, 50, 39.808);
 
     if (fallingObject.img == fallingObjectImg1) {
       fallingObject.img.scale = 0.0223;
@@ -100,7 +108,8 @@ function draw() {
       fallingObject.y = 0;
       fallingObject.x = random(width);
       fallingObject.vel.y = random(1, 5);
-      score -= 1;
+      // score -= 1;
+      lives -= 1;
     }
     //If badFallingObject reaches bottom, move back to random position at top
     if (badFallingObject.y >= height) {
@@ -140,12 +149,14 @@ function draw() {
       badFallingObject.x = random(width);
       badFallingObject.vel.y = random(1, 5);
       badFallingObject.direction = 'down';
-      score -= 1;
+      // score -= 1;
+      lives -= 1;
     }
 
     if (fallingObject.collides(badFallingObject)) {
       fallingObject.direction = 'down';
       badFallingObject.direction = 'down';
+      print('down');
     }
 
     //Display score
@@ -155,8 +166,25 @@ function draw() {
     fill(textColor);
     text('Score: ' + score, 10, 25);
 
+    if (score >= highScore && score != 0) {
+      fill(highScoreColor);
+      highScore = score; 
+    } else {
+      fill(textColor);
+    }
+
+    if (fallingObject.collides(badFallingObject)) {
+      fallingObject.direction = 'down';
+      badFallingObject.direction = 'down';
+      print('down');
+    }
+    
+    text('High Score: ' + highScore, 10, 45);
+
+    text('Lives: ' + lives, 10, 65);
+
     //Create lose state
-    if (score < 0) {
+    if (lives < 1) {
       catcher.x = 500;
       fallingObject.y = -500;
       badFallingObject.x = -500;
@@ -170,6 +198,10 @@ function draw() {
       textStyle('normal');
       fill(highScoreColor);
       text('Click anywhere to play again', 200, 220);
+
+      text('Your score:\n'+ score, width/2 - 100, height/2 + 90)
+
+      text('Your high score:\n'+ highScore, width/2 + 100, height/2 + 90)
       restart();
     }
 
@@ -195,6 +227,7 @@ function draw() {
 function restart() {
   if (mouseIsPressed) {
     score = 0;
+    lives = 3;
     catcher.x = 200;
     catcher.y = 370;
     fallingObject.y = 0;
@@ -310,17 +343,18 @@ function playScreenAssets() {
   fallingObject.rotationLock = true;
 
   //TO-DO: figure out if I can delay the creation of this sprite for a few secs
-  badFallingObject = new Sprite(badFallingObjectImg, 100, 0, 35, 40);
+  badFallingObject = new Sprite(badFallingObjectImg, 150, 0, 35, 40);
   badFallingObject.color = color(0,128,128);
   badFallingObject.img.scale = 0.09;
-
+  badFallingObject.vel.y = 2;
   badFallingObject.rotationLock = true;
+  // badFallingObject.collider = 'k';
 
   if(millis() - time >= wait){
     console.log(wait, "ms passed");
     //if it is, do something
     
-    badFallingObject.vel.y = 2;
+    // badFallingObject.vel.y = 2;
       
     //also update the stored time
     time = millis();
@@ -328,3 +362,4 @@ function playScreenAssets() {
   
 
 }
+
