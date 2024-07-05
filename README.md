@@ -13,7 +13,7 @@ Well, currently this game is still a work in progress. When it's completed, I'll
 - Pug Burger Image: [Designed by freepik on Freepik](https://www.freepik.com/free-vector/fast-food-cute-pugs_1357327.htm#fromView=search&page=1&position=7&uuid=f1b06680-5cc0-4da6-b7bb-164fcbdd34f3)
 - Taco Cat Image: [Designed by catalyststuff on VectorStock](https://www.vectorstock.com/royalty-free-vector/cute-cat-taco-cartoon-vector-46225803)
 - Other Taco Cat Image: [Designed by MEDZ on Flaticon](https://www.flaticon.com/free-icon/food_14934552)
-
+- Heart Image [Designed by bevouliin.com on opengameart.org](https://opengameart.org/content/free-health-and-mana-potions)
 ---
 
 ## TO-DO:

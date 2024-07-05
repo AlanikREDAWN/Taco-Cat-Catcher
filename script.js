@@ -9,8 +9,13 @@ let score = 0;
 let highScore = 0;
 let screen = 0;
 var time;
+let newHighScore = false;
 var wait = 2000;
 let lives = 3;
+let level = 1;
+let fallingObjectSpeed = 0;
+let catcherSpeed = 0;
+let checkLevelLoop = 0;
 //images
 var backgroundImg;
 var catcherImg;
@@ -57,7 +62,7 @@ function setup() {
   // badFallingObjectImg.resize(45, 0);
 
   //debug
-  allSprites.debug = true;
+  // allSprites.debug = true;
   homeScreen();
 }
 
@@ -93,9 +98,15 @@ function draw() {
     image(backgroundImg, 330, 5, 60, 79.711);
 
     //draw lives
-    image(heartImg, 140, 5, 50, 39.808);
-    image(heartImg, 200, 5, 50, 39.808);
-    image(heartImg, 260, 5, 50, 39.808);
+    if (lives >= 2) {
+      image(heartImg, 140, 5, 50, 39.808);
+      if (lives >= 3) {
+        image(heartImg, 200, 5, 50, 39.808);
+        if (lives >= 4) {
+          image(heartImg, 260, 5, 50, 39.808);
+        }
+      }
+    }
 
     if (fallingObject.img == fallingObjectImg1) {
       fallingObject.img.scale = 0.0223;
@@ -107,7 +118,7 @@ function draw() {
     if (fallingObject.y >= height) {
       fallingObject.y = 0;
       fallingObject.x = random(width);
-      fallingObject.vel.y = random(1, 5);
+      fallingObject.vel.y = random(1, 3) + fallingObjectSpeed;
       // score -= 1;
       lives -= 1;
     }
@@ -115,7 +126,7 @@ function draw() {
     if (badFallingObject.y >= height) {
       badFallingObject.y = 0;
       badFallingObject.x = random(width);
-      badFallingObject.vel.y = random(1, 5);
+      badFallingObject.vel.y = random(1, 3) + fallingObjectSpeed;
     }
 
     //Move catcher
@@ -138,16 +149,17 @@ function draw() {
     if (fallingObject.collides(catcher)) {
       fallingObject.y = 0;
       fallingObject.x = random(width);
-      fallingObject.vel.y = random(1, 5);
+      fallingObject.vel.y = random(1, 3) + fallingObjectSpeed;
       fallingObject.direction = 'down';
       score += 1;
+      checkSpeed();
     }
 
     //If badFallingObject collides with catcher, move back to random position at top
     if (badFallingObject.collides(catcher)) {
       badFallingObject.y = 0;
       badFallingObject.x = random(width);
-      badFallingObject.vel.y = random(1, 5);
+      badFallingObject.vel.y = random(1, 3) + fallingObjectSpeed;
       badFallingObject.direction = 'down';
       // score -= 1;
       lives -= 1;
@@ -166,9 +178,12 @@ function draw() {
     fill(textColor);
     text('Score: ' + score, 10, 25);
 
-    if (score >= highScore && score != 0) {
+    if (score >= highScore && score !== 0) {
       fill(highScoreColor);
       highScore = score; 
+      if (newHighScore == false) {
+        newHighScore = true;
+      }
     } else {
       fill(textColor);
     }
@@ -181,8 +196,14 @@ function draw() {
     
     text('High Score: ' + highScore, 10, 45);
 
-    text('Lives: ' + lives, 10, 65);
+    fill(textColor);
+    text('Level ' + level, 10, 65);
 
+    console.log('Level = ' + level);
+    
+    checkLevel();
+  
+    
     //Create lose state
     if (lives < 1) {
       catcher.x = 500;
@@ -199,13 +220,22 @@ function draw() {
       fill(highScoreColor);
       text('Click anywhere to play again', 200, 220);
 
+      textSize(18);
+      textStyle('bold');
+      fill(textColor);
       text('Your score:\n'+ score, width/2 - 100, height/2 + 90)
 
-      text('Your high score:\n'+ highScore, width/2 + 100, height/2 + 90)
+      text('Your high\n score:\n'+ highScore, width/2 + 100, height/2 + 100)
+
+      if (newHighScore == true) {
+        fill(highScoreColor);
+        text('NEW HIGH SCORE', width/2, height/2 + 140);
+      }
+      
       restart();
     }
 
-    youWin();
+    // youWin();
 
   }
   // //set up screen
@@ -228,11 +258,15 @@ function restart() {
   if (mouseIsPressed) {
     score = 0;
     lives = 3;
+    level = 1;
+    fallingObjectSpeed = 0;
+    catcherSpeed = 0;
+    newHighScore = false;
     catcher.x = 200;
     catcher.y = 370;
     fallingObject.y = 0;
     fallingObject.x = random(width);
-    fallingObject.vel.y = random(1, 5);
+    fallingObject.vel.y = 2;
     fallingObject.direction = 'down';
     badFallingObject.y = 0;
     badFallingObject.x = random(width);
@@ -363,3 +397,27 @@ function playScreenAssets() {
 
 }
 
+function checkLevel() {
+  if (score % 5 == 0 && score !== 0) {
+    level = score % 5;
+    // fallingObjectSpeed += 0.05;
+    console.log('score: ' + score);
+    // console.log('increased speed to ' + fallingObjectSpeed);
+    // checkLevelLoop += 1
+    // console.log(checkLevelLoop);
+    // if (checkLevelLoop % 2 !== 0) {
+      // console.log('checkLevelLoop is odd');
+      // fallingObjectSpeed += 0.05;
+    // } else if (checkLevelLoop % 2 === 0) {
+      // console.log('checkLevelLoop is even');
+      // catcherSpeed += 0.10;
+    // }
+  }
+}
+
+function checkSpeed() {
+  if (score % 5 == 0 && score !== 0) {
+    fallingObjectSpeed += 0.05;
+    console.log('increased speed to ' + fallingObjectSpeed);
+  }
+}
