@@ -24,16 +24,16 @@ let highScoreColor = '#d3eddc';
 
 /* PRELOAD LOADS FILES */
 function preload() {
-  backgroundImg = loadImage('assets/burritoCat.gif');
-  // backgroundImg = loadImage('assets/old/burritoCat_old.png');
-  catcherImg = loadImage("assets/plate.gif");
-  // catcherImg = loadImage("assets/old/plate_old.png");
-  fallingObjectImg1 = loadImage("assets/tacoCat1.gif");
-  // fallingObjectImg1 = loadImage("assets/old/tacoCat1_old.png");
-  fallingObjectImg2 = loadImage("assets/tacoCat2.gif");
-  // fallingObjectImg2 = loadImage("assets/old/tacoCat2_old.png");
-  badFallingObjectImg = loadImage("assets/pugBurger.gif");
-   // badFallingObjectImg = loadImage("assets/old/pugBurger_old.png");
+  // backgroundImg = loadImage('assets/burritoCat.gif');
+  backgroundImg = loadImage('assets/burritoCat.png');
+  // catcherImg = loadImage("assets/plate.gif");
+  catcherImg = loadImage('assets/plate.png');
+  // fallingObjectImg1 = loadImage("assets/tacoCat1.gif");
+  fallingObjectImg1 = loadImage('assets/tacoCat1.png');
+  // fallingObjectImg2 = loadImage("assets/tacoCat2.gif");
+  fallingObjectImg2 = loadImage('assets/tacoCat2.png');
+  // badFallingObjectImg = loadImage("assets/pugBurger.gif");
+   badFallingObjectImg = loadImage('assets/pugBurger.png');
 }
 
 /* SETUP RUNS ONCE */
@@ -44,14 +44,14 @@ function setup() {
   // fallingObjects = [fallingObjectImg1, fallingObjectImg2]; -> TO-DO: figure out how to make image for fallingObject sprite random (50% chance of each image)
   
   //resize images
-  backgroundImg.resize(60, 0);
-  catcherImg.resize(80, 0);
-  fallingObjectImg1.resize(45, 0);
-  fallingObjectImg2.resize(45, 0);
-  badFallingObjectImg.resize(45, 0);
+  // backgroundImg.resize(60, 0);
+  // catcherImg.resize(80, 0);
+  // fallingObjectImg1.resize(45, 0);
+  // fallingObjectImg2.resize(45, 0);
+  // badFallingObjectImg.resize(45, 0);
 
   //debug
-  // allSprites.debug = true;
+  allSprites.debug = true;
   homeScreen();
 }
 
@@ -82,6 +82,14 @@ function draw() {
 
     //set up screen
     background(bgColor);
+    //Draw background image
+    image(backgroundImg, 330, 5, 60, 79.711);
+
+    if (fallingObject.img == fallingObjectImg1) {
+      fallingObject.img.scale = 0.0223;
+    } else if (fallingObject.img == fallingObjectImg2) {
+      fallingObject.img.scale = 0.088;
+    }
     
     //If fallingObject reaches bottom, move back to random position at top
     if (fallingObject.y >= height) {
@@ -167,7 +175,7 @@ function draw() {
   // //set up screen
   // background(bgColor);
   // //Draw background image
-  // image(backgroundImg, 230, 5);
+  // image(backgroundImg, 280, 5);
 
   // fill(textColor);
   // textSize(12);
@@ -288,16 +296,22 @@ function playScreenAssets() {
   //Create catcher 
   catcher = new Sprite(catcherImg, 200, 370, 80, 50, 'k');
   catcher.color = color(95,158,160);
+  catcher.img.scale = 0.1563;
 
   //Create falling objects
-  fallingObject = new Sprite(fallingObjectImg1, 100, 0);
+  fallingObject = new Sprite(fallingObjectImg1, 100, 0, 45, 42);
   // fallingObject.color = color(0,128,128);
+  // fallingObject.img.scale = 0.0223;
   fallingObject.vel.y = 2;
   fallingObject.rotationLock = true;
 
+  
+
+  
   //TO-DO: figure out if I can delay the creation of this sprite for a few secs
   badFallingObject = new Sprite(badFallingObjectImg, 100, 0, 35, 40);
   badFallingObject.color = color(0,128,128);
+  badFallingObject.img.scale = 0.09;
   badFallingObject.vel.y = 2;
   badFallingObject.rotationLock = true;
 }
