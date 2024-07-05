@@ -8,6 +8,8 @@ let playButton, directionsButton, backButton;
 let score = 0;
 let highScore = 0;
 let screen = 0;
+var time;
+var wait = 2000;
 //images
 var backgroundImg;
 var catcherImg;
@@ -21,6 +23,7 @@ let greenColor = '#519053';
 var bgColor = '#4ECDC4';
 let textColor = '#008080';
 let highScoreColor = '#d3eddc';
+
 
 /* PRELOAD LOADS FILES */
 function preload() {
@@ -41,6 +44,7 @@ function setup() {
   
   createCanvas(400, 400);
 
+  time = millis();
   // fallingObjects = [fallingObjectImg1, fallingObjectImg2]; -> TO-DO: figure out how to make image for fallingObject sprite random (50% chance of each image)
   
   //resize images
@@ -305,13 +309,22 @@ function playScreenAssets() {
   fallingObject.vel.y = 2;
   fallingObject.rotationLock = true;
 
-  
-
-  
   //TO-DO: figure out if I can delay the creation of this sprite for a few secs
   badFallingObject = new Sprite(badFallingObjectImg, 100, 0, 35, 40);
   badFallingObject.color = color(0,128,128);
   badFallingObject.img.scale = 0.09;
-  badFallingObject.vel.y = 2;
+
   badFallingObject.rotationLock = true;
+
+  if(millis() - time >= wait){
+    console.log(wait, "ms passed");
+    //if it is, do something
+    
+    badFallingObject.vel.y = 2;
+      
+    //also update the stored time
+    time = millis();
+  }
+  
+
 }
