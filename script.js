@@ -10,12 +10,14 @@ let highScore = 0;
 let screen = 0;
 var time;
 let newHighScore = false;
-var wait = 2000;
 let lives = 3;
 let level = 1;
 let fallingObjectSpeed = 0;
 let catcherSpeed = 0;
-let checkLevelLoop = 0;
+let wait = 250;
+let timeUntilPlay, loadTime;
+let fallen = false;
+// let checkLevelLoop = 0;
 //images
 var backgroundImg;
 var catcherImg;
@@ -53,17 +55,11 @@ function setup() {
 
   time = millis();
   // fallingObjects = [fallingObjectImg1, fallingObjectImg2]; -> TO-DO: figure out how to make image for fallingObject sprite random (50% chance of each image)
-  
-  //resize images
-  // backgroundImg.resize(60, 0);
-  // catcherImg.resize(80, 0);
-  // fallingObjectImg1.resize(45, 0);
-  // fallingObjectImg2.resize(45, 0);
-  // badFallingObjectImg.resize(45, 0);
 
   //debug
   // allSprites.debug = true;
   homeScreen();
+  loadTime = millis();
 }
 
 /* DRAW LOOP REPEATS */
@@ -108,6 +104,11 @@ function draw() {
       }
     }
 
+    if (((millis() - loadTime - timeUntilPlay) > wait) && (!fallen)) {
+      badFallingObject.vel.y = 2;
+      fallen = true;
+    }
+    
     if (fallingObject.img == fallingObjectImg1) {
       fallingObject.img.scale = 0.0223;
     } else if (fallingObject.img == fallingObjectImg2) {
@@ -363,6 +364,7 @@ function directionsScreen() {
 }
 
 function playScreenAssets() {
+  timeUntilPlay = millis();
   playButton.pos = {x: -600, y: -600};
   directionsButton.pos = {x: -800, y: -800};
 
@@ -379,24 +381,11 @@ function playScreenAssets() {
   fallingObject.rotationLock = true;
 
   //TO-DO: figure out if I can delay the creation of this sprite for a few secs
-  badFallingObject = new Sprite(badFallingObjectImg, 150, 0, 35, 40);
+  badFallingObject = new Sprite(badFallingObjectImg, 150, -20, 35, 40);
   badFallingObject.color = color(0,128,128);
   badFallingObject.img.scale = 0.09;
-  badFallingObject.vel.y = 2;
-  badFallingObject.rotationLock = true;
-  // badFallingObject.collider = 'k';
 
-  // if(millis() - time >= wait){
-    // console.log(wait, "ms passed");
-    //if it is, do something
-    
-    // badFallingObject.vel.y = 2;
-      
-    //also update the stored time
-    // time = millis();
-  // }
-  
-
+  badFallingObject.rotationLock = true;  
 }
 
 function checkLevel() {

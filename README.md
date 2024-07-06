@@ -29,7 +29,7 @@ Well, currently this game is still a work in progress. When it's completed, I'll
 ### Enhancements
 - [x] Organize code to increase readability
 - [ ] Figure out how to make image for fallingObject sprite random (50% chance of each image)
-- [ ] Figure out how to delay the creation of badFallingObject sprite for a few secs
+- [x] Figure out how to delay the creation of badFallingObject sprite for a few secs
 - [x] Fix pixelated sprite images
 ### Extras
 - [ ] Add sound effects
