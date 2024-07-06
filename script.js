@@ -33,6 +33,8 @@ let textColor = '#008080';
 let highScoreColor = '#d3eddc';
 
 
+
+
 /* PRELOAD LOADS FILES */
 function preload() {
   // backgroundImg = loadImage('assets/burritoCat.gif');
@@ -50,7 +52,8 @@ function preload() {
 
 /* SETUP RUNS ONCE */
 function setup() {
-  
+
+
   createCanvas(400, 400);
 
   time = millis();
@@ -408,3 +411,9 @@ function checkLevel() {
     // }
   }
 }
+
+// function keyPressed {
+//   const { error } = await supabase
+//   .from('High Scores')
+//   .insert({ initials: 'LSD', score: 10 })
+// }
