@@ -19,8 +19,10 @@ Well, currently this game is still a work in progress. When it's completed, I'll
 ## TO-DO:
 - [x] Add home screen
 - [x] Add how to play screen
-- [ ] Add level progression
+- [x] Add level progression
 - [x] Add high score functionality
+- [ ] Add bonus item
+- [ ] Add leaderboard
 ### Debugging
 - [x] Figure out system error
 - [x] Fix collider bug
@@ -30,7 +32,7 @@ Well, currently this game is still a work in progress. When it's completed, I'll
 - [ ] Figure out how to delay the creation of badFallingObject sprite for a few secs
 - [x] Fix pixelated sprite images
 ### Extras
-- [ ] Add sound effects?
+- [ ] Add sound effects
 - [ ] Add animations?
 - [ ] Change canvas size?
 

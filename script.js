@@ -152,7 +152,6 @@ function draw() {
       fallingObject.vel.y = random(1, 3) + fallingObjectSpeed;
       fallingObject.direction = 'down';
       score += 1;
-      checkSpeed();
     }
 
     //If badFallingObject collides with catcher, move back to random position at top
@@ -200,6 +199,9 @@ function draw() {
     text('Level ' + level, 10, 65);
 
     console.log('Level = ' + level);
+
+    fallingObject.direction = 'down';
+    badFallingObject.direction = 'down';
     
     checkLevel();
   
@@ -384,24 +386,27 @@ function playScreenAssets() {
   badFallingObject.rotationLock = true;
   // badFallingObject.collider = 'k';
 
-  if(millis() - time >= wait){
-    console.log(wait, "ms passed");
+  // if(millis() - time >= wait){
+    // console.log(wait, "ms passed");
     //if it is, do something
     
     // badFallingObject.vel.y = 2;
       
     //also update the stored time
-    time = millis();
-  }
+    // time = millis();
+  // }
   
 
 }
 
 function checkLevel() {
   if (score % 5 == 0 && score !== 0) {
-    level = score % 5;
-    // fallingObjectSpeed += 0.05;
-    console.log('score: ' + score);
+    if (level !== score/5 + 1) {
+      level = score/5 + 1;
+      fallingObjectSpeed += 0.25;
+      console.log('increased speed to ' + fallingObjectSpeed);
+    }
+    
     // console.log('increased speed to ' + fallingObjectSpeed);
     // checkLevelLoop += 1
     // console.log(checkLevelLoop);
@@ -412,12 +417,5 @@ function checkLevel() {
       // console.log('checkLevelLoop is even');
       // catcherSpeed += 0.10;
     // }
-  }
-}
-
-function checkSpeed() {
-  if (score % 5 == 0 && score !== 0) {
-    fallingObjectSpeed += 0.05;
-    console.log('increased speed to ' + fallingObjectSpeed);
   }
 }
