@@ -1,6 +1,7 @@
 entrypoint = "script.js"
 
 hidden=[".config"]
+modules = ["nodejs-20"]
 
 # hosting is currently hardcoded for this language
 # [hosting]
