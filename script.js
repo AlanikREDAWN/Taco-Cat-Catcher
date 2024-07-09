@@ -1,5 +1,49 @@
 //Move the catcher with the left and right arrow keys to catch the falling objects. 
 
+// script.js
+import { supabase } from './supabaseClient.ts';
+
+const { v4: uuidv4 } = require('uuid');
+
+// const myUUID = uuidv4();
+// console.log('Generated UUID:', myUUID);
+
+async function fetchHighScores() {
+  try {
+    const { data, error } = await supabase
+      .from('High Scores')
+      .select('*')
+      .order('score', { ascending: false });
+    if (error) throw error;
+    return data;
+  } catch (error) {
+    console.error('Error fetching high scores:', error);
+    return [];
+  }
+}
+
+// async function displayHighScores() {
+//   const highScores = await fetchHighScores();
+//   highScores.forEach(score => {
+//     console.log(`Player: ${score.player}, Score: ${score.score}`);
+//   });
+// }
+
+// displayHighScores();
+
+async function saveHighScore(initals, score) {
+  try {
+    const { data, error } = await supabase
+      .from('High Scores')
+      .insert([{ initals: initals, score: score }])
+      .select();
+    if (error) throw error;
+    console.log('High score saved:', data);
+  } catch (error) {
+    console.error('Error saving high score:', error);
+  }
+}
+
 /* VARIABLES */
 //sprites
 let catcher, fallingObject, badFallingObject;
@@ -412,8 +456,6 @@ function checkLevel() {
   }
 }
 
-// function keyPressed {
-//   const { error } = await supabase
-//   .from('High Scores')
-//   .insert({ initials: 'LSD', score: 10 })
-// }
+function keyPressed() {
+  saveHighScore("LSD", 10);
+}
