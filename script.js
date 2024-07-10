@@ -1,7 +1,7 @@
 //Move the catcher with the left and right arrow keys to catch the falling objects. 
 
 // script.js
-import { supabase } from './supabaseClient.ts';
+import { supabase } from '../../../dist/supabaseClient';
 
 const { v4: uuidv4 } = require('uuid');
 

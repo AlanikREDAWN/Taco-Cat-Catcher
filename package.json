@@ -7,15 +7,25 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "start": "node script.js"
+    "postbuild": "copyfiles script.js dist",
+    "start": "node dist/supabaseClient.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@supabase/auth-js": "^2.64.3",
+    "@supabase/realtime-js": "^2.10.4",
     "@supabase/supabase-js": "^2.44.3",
+    "@types/node": "^20.14.10",
     "dotenv": "^16.4.5",
-    "typescript": "^5.5.3",
     "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "copyfiles": "^2.4.1",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.5.3",
+    "webpack": "^5.92.1",
+    "webpack-cli": "^5.1.4"
   }
 }
