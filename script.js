@@ -1,48 +1,77 @@
 //Move the catcher with the left and right arrow keys to catch the falling objects. 
 
-// script.js
-import { supabase } from '../../../dist/supabaseClient';
+/*
+import { createClient } from '@supabase/supabase-js';
+import * as dotenv from 'dotenv';
 
-const { v4: uuidv4 } = require('uuid');
+dotenv.config({ path: '../.env.local' });
 
-// const myUUID = uuidv4();
-// console.log('Generated UUID:', myUUID);
+const supabaseUrl = process.env.SUPABASE_URL || "";
+const supabaseAnonKey = process.env.SUPABASE_KEY || "";
+
+if (!supabaseUrl || !supabaseAnonKey) {
+    throw new Error('Missing SUPABASE_URL or SUPABASE_KEY in environment variables.');
+}
+
+// Verifying the constants are correctly initialized
+console.log(`Supabase URL: ${supabaseUrl}`);
+console.log(`Supabase KEY: ${supabaseAnonKey}`);
+
+// Create a single supabase client for interacting with your database
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 async function fetchHighScores() {
   try {
-    const { data, error } = await supabase
-      .from('High Scores')
-      .select('*')
-      .order('score', { ascending: false });
-    if (error) throw error;
-    return data;
-  } catch (error) {
-    console.error('Error fetching high scores:', error);
-    return [];
+    const { data, error}
   }
 }
+*/
+// script.js
+// import { supabase } from '../../../dist/supabaseClient.js';
 
-// async function displayHighScores() {
-//   const highScores = await fetchHighScores();
-//   highScores.forEach(score => {
-//     console.log(`Player: ${score.player}, Score: ${score.score}`);
-//   });
+ // const { v4: uuidv4 } = require('uuid');
+
+// // const myUUID = uuidv4();
+// // console.log('Generated UUID:', myUUID);
+
+// async function fetchHighScores() {
+//   try {
+//     const { data, error } = await supabase
+//       .from('High Scores')
+//       .select('*')
+//       .order('score', { ascending: false });
+//     if (error) throw error;
+//     return data;
+//   } catch (error) {
+//     console.error('Error fetching high scores:', error);
+//     return [];
+//   }
 // }
 
-// displayHighScores();
+// // async function displayHighScores() {
+// //   const highScores = await fetchHighScores();
+// //   highScores.forEach(score => {
+// //     console.log(`Player: ${score.player}, Score: ${score.score}`);
+// //   });
+// // }
 
-async function saveHighScore(initals, score) {
-  try {
-    const { data, error } = await supabase
-      .from('High Scores')
-      .insert([{ initals: initals, score: score }])
-      .select();
-    if (error) throw error;
-    console.log('High score saved:', data);
-  } catch (error) {
-    console.error('Error saving high score:', error);
-  }
-}
+// // displayHighScores();
+
+// async function saveHighScore(initals, score) {
+//   try {
+//     const { data, error } = await supabase
+//       .from('High Scores')
+//       .insert([{ initals: initals, score: score }])
+//       .select();
+//     if (error) throw error;
+//     console.log('High score saved:', data);
+//   } catch (error) {
+//     console.error('Error saving high score:', error);
+//   }
+// }
+
+import { fetchHighScores } from "./pages/api/tasks/index.js";
+import { addHighScore } from "./pages/api/tasks/add.js";
 
 /* VARIABLES */
 //sprites
@@ -456,6 +485,6 @@ function checkLevel() {
   }
 }
 
-function keyPressed() {
-  saveHighScore("LSD", 10);
-}
+// function keyPressed() {
+//   // saveHighScore("LSD", 10);
+// }

@@ -2,7 +2,7 @@
   "name": "collection-style-game-lilia-d",
   "version": "1.0.0",
   "description": "This game was started in the 2024 Girls Who Code SIP (Summer Immersion Program), and after becoming an alumni, I found Hack Club and decided to fully flesh out my game and make it into something unique. So, here I am!",
-  "main": "bundle.js",
+  "main": "script.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
